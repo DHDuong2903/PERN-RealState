@@ -1,9 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import { connectDB } from "./configs/db.js";
+import initRoutes from "./routes/index.js";
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
@@ -17,9 +18,7 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+initRoutes(app);
 
 app.listen(PORT, () => {
   connectDB();

@@ -1,7 +1,7 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
-  class Wishlist extends Model {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
+  class Tag extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Wishlist.init(
+  Tag.init(
     {
-      idUser: DataTypes.INTEGER,
-      idPost: DataTypes.INTEGER,
+      tag: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Wishlist",
+      modelName: "Tag",
     }
   );
-  return Wishlist;
+  return Tag;
 };

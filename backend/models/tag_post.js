@@ -1,7 +1,7 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
-  class Rating extends Model {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
+  class Tag_Post extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,17 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Rating.init(
+  Tag_Post.init(
     {
+      idTag: DataTypes.INTEGER,
       idPost: DataTypes.INTEGER,
-      idUser: DataTypes.INTEGER,
-      content: DataTypes.TEXT,
-      star: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Rating",
+      modelName: "Tag_Post",
     }
   );
-  return Rating;
+  return Tag_Post;
 };

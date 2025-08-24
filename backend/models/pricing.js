@@ -1,7 +1,7 @@
 "use strict";
-const { enumData } = require("../utils/constants.cjs");
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+import { enumData } from "../utils/constants.js";
+export default (sequelize, DataTypes) => {
   class Pricing extends Model {
     /**
      * Helper method for defining associations.
