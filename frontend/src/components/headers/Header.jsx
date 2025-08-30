@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -10,10 +10,20 @@ import {
 } from "../ui/navigation-menu";
 import navigations from "./navigations";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Login } from "../logins";
+import useMeStore from "@/zustand/useMeStore";
 
 const Header = () => {
+  const [isShowDialog, setIsShowDialog] = useState(false);
+  const { token } = useMeStore();
+
+  console.log(token);
+
+  const onClose = useCallback(() => {
+    setIsShowDialog(false);
+  }, []);
+
   return (
     <div className="h-24 p-4 flex items-center justify-between shadow-md">
       <div className="flex items-center gap-8">
@@ -48,14 +58,16 @@ const Header = () => {
         </NavigationMenu>
       </div>
       <div className="flex items-center gap-4">
-        <Dialog>
+        <Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
           <DialogTrigger asChild>
-            <Button variant="outline">Đăng nhập / Đăng ký</Button>
+            <Button onClick={() => setIsShowDialog(true)} variant="outline">
+              Đăng nhập / Đăng ký
+            </Button>
           </DialogTrigger>
-          <DialogContent className="min-w-[500px]">
+          <DialogContent aria-describedby={undefined} className="min-w-[500px]">
             <DialogHeader>
-              <DialogTitle className='text-secon'></DialogTitle>
-              <Login />
+              <DialogTitle className="text-secon"></DialogTitle>
+              <Login onClose={onClose} />
             </DialogHeader>
           </DialogContent>
         </Dialog>

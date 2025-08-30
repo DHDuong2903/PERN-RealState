@@ -29,9 +29,9 @@ export default FormInput;
 FormInput.propTypes = {
   form: PropTypes.shape({
     control: PropTypes.object.isRequired,
-    label: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    type: PropTypes.oneOf(["text", "password"]),
-  }),
+  }).isRequired,
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  type: PropTypes.oneOf(["text", "password"]),
 };
