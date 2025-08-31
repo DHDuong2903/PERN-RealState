@@ -9,7 +9,7 @@ axiosInstance.interceptors.request.use((config) => {
   const store = window.localStorage.getItem("realstate/me");
   if (store) {
     const parsedStore = JSON.parse(store);
-    const token = parsedStore?.state?.token; 
+    const token = parsedStore?.state?.token;
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -32,5 +32,9 @@ export const endPoints = {
   },
   user: {
     getMe: "/user/me",
+  },
+  external: {
+    getProvinces: "https://vietnam-administrative-division-json-server-swart.vercel.app/province",
+    getCommunesFromIdProvince: "https://vietnam-administrative-division-json-server-swart.vercel.app/commune",
   },
 };

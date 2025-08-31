@@ -2,9 +2,9 @@
 
 @import "tailwindcss";
 @theme {
-  --color-main: #8c1007;
-  --color-mainbg: #fff0c4;
-  --color-secon: #3e0703;
+  --color-main: #1A2A80;
+  --color-mainbg: #B2B0E8;
+  --color-secon: #3B38A0;
 }
 @import "tw-animate-css";
 

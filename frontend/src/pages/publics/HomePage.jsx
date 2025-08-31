@@ -1,11 +1,16 @@
-import React from 'react'
+import { Sliderbanner } from "@/components/layouts";
+import { Search } from "@/components/searchs";
+import React from "react";
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>HomePage</h1>
+    <div className="relative">
+      <Sliderbanner />
+      <div>
+        <Search />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

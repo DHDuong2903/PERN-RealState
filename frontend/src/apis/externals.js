@@ -7,3 +7,9 @@ export const apiGetCredentialFromAccessToken = (accessToken) => {
     url: endPoints.auth.getCredentialFromAccessToken + accessToken,
   });
 };
+
+export const apiGetProvinces = () =>
+  axios({
+    method: "get",
+    url: endPoints.external.getProvinces,
+  });
