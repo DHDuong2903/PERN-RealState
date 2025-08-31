@@ -9,8 +9,9 @@ axiosInstance.interceptors.request.use((config) => {
   const store = window.localStorage.getItem("realstate/me");
   if (store) {
     const parsedStore = JSON.parse(store);
-    if (parsedStore && parsedStore.accessToken) {
-      config.headers["Authorization"] = `Bearer ${parsedStore.accessToken}`;
+    const token = parsedStore?.state?.token; 
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
   }
   return config;
@@ -28,5 +29,8 @@ export const endPoints = {
     getCredentialFromAccessToken: "https://www.googleapis.com/oauth2/v1/userinfo?access_token=",
     checkNewUser: "/auth/has-user/",
     signInWithGoogle: "/auth/google",
+  },
+  user: {
+    getMe: "/user/me",
   },
 };

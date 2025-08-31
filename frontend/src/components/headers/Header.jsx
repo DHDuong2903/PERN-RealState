@@ -13,12 +13,14 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Login } from "../logins";
 import useMeStore from "@/zustand/useMeStore";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { menu } from "./menu";
+import { LogOut } from "lucide-react";
 
 const Header = () => {
   const [isShowDialog, setIsShowDialog] = useState(false);
-  const { token } = useMeStore();
-
-  console.log(token);
+  // eslint-disable-next-line no-unused-vars
+  const { me, logout } = useMeStore();
 
   const onClose = useCallback(() => {
     setIsShowDialog(false);
@@ -58,19 +60,41 @@ const Header = () => {
         </NavigationMenu>
       </div>
       <div className="flex items-center gap-4">
-        <Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
-          <DialogTrigger asChild>
-            <Button onClick={() => setIsShowDialog(true)} variant="outline">
-              Đăng nhập / Đăng ký
-            </Button>
-          </DialogTrigger>
-          <DialogContent aria-describedby={undefined} className="min-w-[500px]">
-            <DialogHeader>
-              <DialogTitle className="text-secon"></DialogTitle>
-              <Login onClose={onClose} />
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        {!me ? (
+          <Dialog onOpenChange={(isOpen) => setIsShowDialog(isOpen)} open={isShowDialog}>
+            <DialogTrigger asChild>
+              <Button onClick={() => setIsShowDialog(true)} variant="outline">
+                Đăng nhập / Đăng ký
+              </Button>
+            </DialogTrigger>
+            <DialogContent aria-describedby={undefined} className="min-w-[500px]">
+              <DialogHeader>
+                <DialogTitle className="text-secon"></DialogTitle>
+                <Login onClose={onClose} />
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button>{me.fullname}</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {menu.map((el) => (
+                <DropdownMenuItem key={el.id}>
+                  <Link className="flex items-center gap-2" to={el.path}>
+                    {el.icon}
+                    {el.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuItem onClick={logout} className="flex items-center gap-2 cursor-pointer">
+                <LogOut size={14} />
+                <span>Đăng xuất</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
         <Button variant="outline">Đăng tin</Button>
       </div>
     </div>
