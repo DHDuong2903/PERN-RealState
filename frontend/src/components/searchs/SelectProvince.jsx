@@ -14,7 +14,7 @@ const SelectProvince = ({ onClose }) => {
       {/* Nút X bên phải */}
       <div className="flex justify-end mb-2">
         <Button
-          className="rounded-full"
+          variant="outline"
           onClick={(e) => {
             e.stopPropagation();
             onClose();

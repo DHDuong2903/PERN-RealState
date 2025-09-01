@@ -39,19 +39,23 @@ const Header = () => {
               <Fragment key={element.id}>
                 {element.hasSub && (
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100">
+                    <NavigationMenuTrigger className="cursor-pointer font-medium bg-transparent hover:bg-mainbg/60">
                       {element.name}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="grid grid-cols-2 min-w-96">
                       {element.subs.map((sub) => (
-                        <NavigationMenuLink key={sub.pathname}>{sub.name}</NavigationMenuLink>
+                        <NavigationMenuLink className="cursor-pointer" key={sub.pathname}>
+                          {sub.name}
+                        </NavigationMenuLink>
                       ))}
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 )}
                 {!element.hasSub && (
                   <NavigationMenuItem>
-                    <NavigationMenuLink className="text-sm font-medium">{element.name}</NavigationMenuLink>
+                    <NavigationMenuLink className="text-sm font-medium cursor-pointer">
+                      {element.name}
+                    </NavigationMenuLink>
                   </NavigationMenuItem>
                 )}
               </Fragment>

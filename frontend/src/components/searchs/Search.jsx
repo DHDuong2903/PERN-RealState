@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Search as SearchIcon } from "lucide-react";
 import { SelectProvince } from ".";
+import PopoverRange from "./PopoverRange";
+import { postRentTypes, postSoldTypes, prices, sizes } from "@/lib/constants";
+import PopoverCheckbox from "./PopoverCheckbox";
 
 const postTypes = ["Bán", "Cho thuê"].map((el, index) => ({
   id: index,
@@ -30,11 +33,7 @@ const Search = () => {
           </TabsList>
 
           {postTypes.map((el) => (
-            <TabsContent
-              className="bg-black/60 h-40 p-4 rounded-md rounded-tl-none space-y-4"
-              key={el.id}
-              value={el.value}
-            >
+            <TabsContent className="bg-black/60 p-4 rounded-md rounded-tl-none space-y-4" key={el.id} value={el.value}>
               <div
                 onClick={() => setIsShowSelectProvince(true)}
                 className={`flex relative items-center justify-between bg-slate-50 rounded-md p-1 ${
@@ -48,6 +47,19 @@ const Search = () => {
 
                 {/* chỉ hiện khi click */}
                 {isShowSelectProvince && <SelectProvince onClose={() => setIsShowSelectProvince(false)} />}
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <PopoverRange name="price" _name="_price" options={prices} label="Mức giá" />
+                <PopoverRange name="size" _name="_size" options={sizes} label="Diện tích" />
+                <PopoverCheckbox
+                  name="postType"
+                  label="Loại tin đăng"
+                  options={
+                    activeTab === "Bán"
+                      ? postSoldTypes.map((el) => ({ id: el.pathname, label: el.name }))
+                      : postRentTypes.map((el) => ({ id: el.pathname, label: el.name }))
+                  }
+                />
               </div>
             </TabsContent>
           ))}
