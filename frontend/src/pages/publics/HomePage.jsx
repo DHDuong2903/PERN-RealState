@@ -1,6 +1,5 @@
 import { Sliderbanner } from "@/components/layouts";
 import { Search } from "@/components/searchs";
-import React from "react";
 
 const HomePage = () => {
   return (

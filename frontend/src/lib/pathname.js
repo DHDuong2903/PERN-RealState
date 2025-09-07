@@ -8,8 +8,8 @@ export const pathnames = {
   },
   users: {
     layout: "/thanh-vien/",
-    personal: "ca-nhan",
     general: "tong-quan",
+    personal: "ca-nhan",
     createPost: "tao-moi-tin-dang",
     managePost: "quan-ly-tin-dang",
     manageDraft: "quan-ly-tin-nhap",

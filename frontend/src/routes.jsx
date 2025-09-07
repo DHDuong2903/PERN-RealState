@@ -1,6 +1,8 @@
+
 import App from "./App";
 import { pathnames } from "./lib/pathname";
 import { HomePage, News, PublicLayout, RentProperty, SoldProperty } from "./pages/publics";
+import { BalanceInfor, CreatePost, Deposit, General, ManagePost, ManagePostDraft, Personal, UserLayout } from "./pages/users";
 
 const routes = [
   {
@@ -26,6 +28,40 @@ const routes = [
           {
             path: pathnames.publics.soldProperty,
             element: <SoldProperty />,
+          },
+        ],
+      },
+      {
+        path: pathnames.users.layout,
+        element: <UserLayout />,
+        children: [
+          {
+            path: pathnames.users.general,
+            element: <General />,
+          },
+          {
+            path: pathnames.users.personal,
+            element: <Personal />,
+          },
+          {
+            path: pathnames.users.createPost,
+            element: <CreatePost />,
+          },
+          {
+            path: pathnames.users.managePost,
+            element: <ManagePost />,
+          },
+          {
+            path: pathnames.users.manageDraft,
+            element: <ManagePostDraft />,
+          },
+          {
+            path: pathnames.users.manageBalance,
+            element: <BalanceInfor />,
+          },
+          {
+            path: pathnames.users.deposit,
+            element: <Deposit />,
           },
         ],
       },
